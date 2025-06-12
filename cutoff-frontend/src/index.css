@@ -1,0 +1,235 @@
+/* -----------------------------------------------------
+   Global Resets & Base Styles
+----------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #f8f9fa;
+  /* Light gray background */
+  color: #333;
+}
+
+/* -----------------------------------------------------
+   Header / Title
+----------------------------------------------------- */
+.app-header {
+  background-color: #f96332;
+  /* Vibrant orange */
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem 0;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+/* -----------------------------------------------------
+   Container & Title
+----------------------------------------------------- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* -----------------------------------------------------
+   Form Card
+----------------------------------------------------- */
+.form-card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.form-card h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+/* -----------------------------------------------------
+   Form Layout
+----------------------------------------------------- */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-row>div {
+  flex: 1;
+  min-width: 200px;
+}
+
+.form-row label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-row select,
+.form-row input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+/* -----------------------------------------------------
+   Submit Button
+----------------------------------------------------- */
+.submit-btn {
+  background-color: #f96332;
+  /* Same orange as header */
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submit-btn:hover {
+  background-color: #e85629;
+}
+
+/* -----------------------------------------------------
+   Results Table
+----------------------------------------------------- */
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.results-table thead tr {
+  background-color: #f96332;
+  color: #fff;
+}
+
+.results-table th,
+.results-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+/* -----------------------------------------------------
+   Responsive Adjustments
+----------------------------------------------------- */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .results-table,
+  .results-table thead tr,
+  .results-table tbody tr {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .results-table thead tr {
+    display: none;
+  }
+
+  .results-table tbody tr {
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .results-table td {
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    padding: 0.75rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .results-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+  }
+}
+
+
+/* Container for pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  gap: 10px;
+}
+
+/* Style for pagination buttons */
+.pagination button {
+  background-color: #007bff;
+  /* Primary blue */
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover state for buttons */
+.pagination button:hover:not(:disabled) {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Disabled buttons */
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #007bff;
+}
+
+/* Style for the page count text */
+.pagination span {
+  font-size: 16px;
+  color: #333;
+}
+
+
+
+/* Styles for the Print Button */
+.print-btn {
+  background-color: #1E90FF;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.print-btn:hover {
+  background-color: #003d99;
+  transform: scale(1.05);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.print-btn:active {
+  transform: scale(0.98);
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.12);
+}
