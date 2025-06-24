@@ -938,11 +938,11 @@ const CutoffForm = () => {
           <option value="DTE">
             Diploma in Technical Education (DTE/Polytechnic)
           </option>
-          <option value="DYSER">Direct Second Year Engineering (DYSER)</option>
+          <option value="DYSER">Direct Second Year Engineering (DSE)</option>
           <option value="DYSE">
             Direct Second Year Engineering (Working Professional)
           </option>
-          <option value="DYSP">Direct Second Year Pharmacy (DYSP)</option>
+          <option value="DYSP">Direct Second Year Pharmacy (DSP)</option>
           <option value="FYJC">First Year Junior College (FYJC)</option>
           <option value="HMCT">
             Hotel Management and Catering Technology (HMCT)
@@ -967,6 +967,7 @@ const CutoffForm = () => {
           <option value="BUMS">
             Bachelor of Unani Medicine and Surgery (BUMS)
           </option>
+          <option value="MAFSU">Maharashtra Animal and Fishery Sciences</option>
         </select>
       </div>
 
