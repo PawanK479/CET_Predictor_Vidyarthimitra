@@ -6,10 +6,193 @@ import Select from "react-select";
 import "./Form.css";
 
 const CutoffForm = () => {
+  const dropdownStyle = {
+    padding: "10px",
+    borderRadius: "6px",
+    border: "1px solid #ccc",
+    width: "100%",
+    maxWidth: "400px",
+    fontSize: "16px",
+  };
+
+  const courseCategories = {
+    "Medical Education": {
+      "Under Graduate Courses": [
+        { value: "BSC", label: "Bachelor of Science (B.Sc.) Nursing" },
+        {
+          value: "MBBS",
+          label: "Bachelor of Medicine and Bachelor of Surgery (MBBS)",
+        },
+        {
+          value: "BAMS",
+          label: "Bachelor of Ayurvedic Medicine and Surgery (BAMS)",
+        },
+        { value: "BDS", label: "Bachelor of Dental Surgery (BDS)" },
+        {
+          value: "BSMS",
+          label: "Bachelor of Siddha Medicine and Surgery (BSMS)",
+        },
+        {
+          value: "BHMS",
+          label: "Bachelor of Homeopathic Medicine and Surgery (BHMS)",
+        },
+        {
+          value: "BUMS",
+          label: "Bachelor of Unani Medicine and Surgery (BUMS)",
+        },
+        { value: "VCI", label: "Veterinary Council of India (VCI)" },
+        { value: "NEET-UG", label: "NEET-UG" },
+        {
+          value: "BNYS",
+          label: "Bachelor of Naturopathy and Yogic Sciences (BNYS)",
+        },
+        {
+          value: "BSc Nursing",
+          label: "Bachelor of Science in Nursing (B.Sc. Nursing)",
+        },
+        {
+          value: "ANM-GNM",
+          label:
+            "Auxiliary Nurse Midwifery / General Nursing and Midwifery (ANM-GNM)",
+        },
+        {
+          value: "DPN-PHN",
+          label:
+            "Diploma in Psychiatric Nursing / Public Health Nursing (DPN-PHN)",
+        },
+        { value: "AYUSH_UG_15", label: "AIQ(15%) For AYUSH Courses" },
+      ],
+      "Post Graduate Courses": [
+        { value: "NEET-PGM", label: "NEET-PGM" },
+        { value: "PG DNB", label: "Post Graduate DNB" },
+        { value: "NEET-PGD", label: "NEET-PGD" },
+        { value: "PGP", label: "PGP/PGO/PGASLP/M.Sc-(P&O)" },
+      ],
+    },
+
+    "Technical Education": {
+      "Under Graduate Courses": [
+        { value: "BTech", label: "B.E./B.Tech" },
+        { value: "BBA/BMS/BBM", label: "BBA / BMS / BBM" },
+        { value: "BCA_MCA Integrated", label: "BCA-MCA Integrated" },
+        {
+          value: "BCA_BBA_BMS_BBM_MBA_MCA_Integrated",
+          label: "BCA/BBA/BMS/BBM/MBA(MBA Integrated)/MCA Integrated",
+        },
+        { value: "BPharm", label: "B.Pharmacy/Pharm D" },
+        { value: "BArch", label: "B.Architecture" },
+        {
+          value: "HMCT",
+          label: "Hotel Management and Catering Technology (HMCT)",
+        },
+        { value: "BHMCT_Integrated", label: "B.HMCT/M.HMCT (Integrated)" },
+        { value: "DYSER", label: "Direct Second Year Engineering (DSE)" },
+        {
+          value: "DYSE",
+          label: "Direct Second Year Engineering (Working Professional)",
+        },
+        { value: "DYSP", label: "Direct Second Year Pharmacy (DSP)" },
+        { value: "BPlanning", label: "B.Planning" },
+        { value: "Pharmacy Practice", label: "B. Pharmacy Practice" },
+        { value: "BDesign", label: "Bachelor of Design (BDesign)" },
+        { value: "DS_HMCT", label: "Direct Second Year Degree in HMCT" },
+        {
+          value: "DTE",
+          label: "Diploma in Technical Education (DTE/Polytechnic)",
+        },
+      ],
+      "Post Graduate Courses": [
+        { value: "Mtech", label: "Master of Technology (MTech) / M.E" },
+        {
+          value: "M.E/M.Tech(Working Professional)",
+          label: "M.E / M.Tech (Working Professional)",
+        },
+        { value: "March", label: "Master of Architecture (MArch)" },
+        { value: "MPharm", label: "Master of Pharmacy (MPharm)" },
+
+        { value: "MBA_MMS", label: "MBA/MMS" },
+        { value: "MCA", label: "MCA" },
+        { value: "MHMCT", label: "M.HMCT" },
+        { value: "MPlanning", label: "M.Planning" },
+        { value: "MCA_Lateral", label: "MCA Second Year (Lateral Entry)" },
+        { value: "MCA_WP", label: "MCA (Working Professionals)" },
+        { value: "MBA_Lateral", label: "MBA Second Year (Lateral Entry)" },
+        { value: "MBA_WP", label: "MBA/MMS (Working Professionals)" },
+      ],
+    },
+
+    "Higher Education": {
+      "Under Graduate Courses": [
+        { value: "LLB_5", label: "L.L.B. - 5 Years (Integrated)" },
+        { value: "LLB_3", label: "L.L.B. - 3 Years" },
+        { value: "BEd", label: "B.Ed" },
+        { value: "BPED", label: "B.P.Ed" },
+        { value: "BA_BSc_BEd", label: "B.A.-B.Ed./B.Sc.-B.Ed. (Integrated)" },
+      ],
+      "Post Graduate Courses": [
+        { value: "MEd", label: "M.Ed" },
+        { value: "MPED", label: "M.P.Ed" },
+        { value: "BEd_MEd", label: "B.Ed.-M.Ed. INTEGRATED" },
+      ],
+    },
+
+    "Agriculture Education": {
+      "Agriculture Courses": [
+        { value: "Agriculture", label: "Agriculture & Allied Courses" },
+        {
+          value: "DS_BSc_Agri",
+          label: "Direct Second Year of Bachelor of Science (Agriculture)",
+        },
+      ],
+    },
+
+    "Fine Art Education": {
+      "Under Graduate Courses": [{ value: "FineArt", label: "Fine Art" }],
+    },
+
+    "Ayush Education": {
+      "Post Graduate Courses": [
+        {
+          value: "AIAPGET_STATE",
+          label: "AIAPGET (PGA/PGH/PGU) (State Quota)",
+        },
+        {
+          value: "AIAPGET_AIQ",
+          label: "AIAPGET (PGA/PGH/PGU) (AIQ 15% Quota)",
+        },
+      ],
+    },
+
+    FYJC: {
+      "Under Graduate Courses": [
+        { value: "FYJC", label: "First Year Junior College (FYJC)" },
+      ],
+    },
+
+    JOSAA: {
+      "Under Graduate Courses": [
+        { value: "Josaa", label: "Joint Seat Allocation Authority (JOSAA)" },
+      ],
+    },
+
+    MAFSU: {
+      "Veterinary and Fishery Sciences": [
+        { value: "MAFSU", label: "Maharashtra Animal and Fishery Sciences" },
+      ],
+    },
+  };
+
   // Course selector (for two courses: BDesign and BArch)
   // For FYJC, these are the input fields.
   // For other courses, existing fields remain.
   // FYJC input fields:
+
+  const [mainCategory, setMainCategory] = useState("");
+  const [subCategory, setSubCategory] = useState("");
+
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedGroup, setSelectedGroup] = useState("");
+
   const [course, setCourse] = useState("BDesign");
   // At the top with your other useState calls:
   const [studentName, setStudentName] = useState("");
@@ -900,11 +1083,15 @@ const CutoffForm = () => {
         <label
           style={{ display: "block", marginBottom: "8px", fontWeight: "bold" }}
         >
-          Select Admission Process:
+          Select Course Category:
         </label>
         <select
-          value={course}
-          onChange={(e) => setCourse(e.target.value)}
+          value={mainCategory}
+          onChange={(e) => {
+            setMainCategory(e.target.value);
+            setSubCategory("");
+            setCourse("");
+          }}
           style={{
             padding: "10px",
             borderRadius: "6px",
@@ -912,64 +1099,142 @@ const CutoffForm = () => {
             width: "100%",
             maxWidth: "400px",
             fontSize: "16px",
+            marginBottom: "16px",
           }}
         >
-          <option value="BDesign">Bachelor of Design (BDesign)</option>
-          <option value="BAMS">
-            Bachelor of Ayurvedic Medicine and Surgery (BAMS)
-          </option>
-          <option value="BArch">Bachelor of Architecture (BArch)</option>
-          <option value="BBA/BMS/BBM">
-            Bachelor of Business Administration / Management Studies /
-            Management (BBA/BMS/BBM)
-          </option>
-          <option value="BCA_MCA Integrated">BCA-MCA Integrated</option>
-
-          <option value="BDS">Bachelor of Dental Surgery (BDS)</option>
-          <option value="BPharm">Bachelor of Pharmacy / Pharm D</option>
-          <option value="BSC">Bachelor of Science (BSC)</option>
-          <option value="BSMS">
-            Bachelor of Siddha Medicine and Surgery (BSMS)
-          </option>
-          <option value="BTech">Bachelor of Technology (BTech)</option>
-          <option value="BHMS">
-            Bachelor of Homeopathic Medicine and Surgery (BHMS)
-          </option>
-          <option value="DTE">
-            Diploma in Technical Education (DTE/Polytechnic)
-          </option>
-          <option value="DYSER">Direct Second Year Engineering (DSE)</option>
-          <option value="DYSE">
-            Direct Second Year Engineering (Working Professional)
-          </option>
-          <option value="DYSP">Direct Second Year Pharmacy (DSP)</option>
-          <option value="FYJC">First Year Junior College (FYJC)</option>
-          <option value="HMCT">
-            Hotel Management and Catering Technology (HMCT)
-          </option>
-          <option value="Josaa">Joint Seat Allocation Authority (JOSAA)</option>
-          <option value="MBA">Master of Business Administration (MBA)</option>
-          <option value="MBA_MMS(Working_Professional)">
-            MBA/MMS (Working Professional)
-          </option>
-          <option value="MBBS">
-            Bachelor of Medicine and Bachelor of Surgery (MBBS)
-          </option>
-          <option value="MCA">Master of Computer Applications (MCA)</option>
-          <option value="March">Master of Architecture (MArch)</option>
-          <option value="MPharm">Master of Pharmacy (MPharm)</option>
-          <option value="Mtech">Master of Technology (MTech)</option>
-          <option value="M.E/M.Tech(Working Professional)">
-            M.E / M.Tech (Working Professional)
-          </option>
-          <option value="Pharmacy Practice">Pharmacy Practice</option>
-          <option value="VCI">Veterinary Council of India (VCI)</option>
-          <option value="BUMS">
-            Bachelor of Unani Medicine and Surgery (BUMS)
-          </option>
-          <option value="MAFSU">Maharashtra Animal and Fishery Sciences</option>
+          <option value="">-- Select Category --</option>
+          {Object.keys(courseCategories).map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
+
+        {mainCategory && (
+          <>
+            <label
+              style={{
+                display: "block",
+                marginBottom: "8px",
+                fontWeight: "bold",
+              }}
+            >
+              Select Sub Category:
+            </label>
+            <select
+              value={subCategory}
+              onChange={(e) => {
+                setSubCategory(e.target.value);
+                setCourse("");
+              }}
+              style={{
+                padding: "10px",
+                borderRadius: "6px",
+                border: "1px solid #ccc",
+                width: "100%",
+                maxWidth: "400px",
+                fontSize: "16px",
+                marginBottom: "16px",
+              }}
+            >
+              <option value="">-- Select Sub Category --</option>
+              {Object.keys(courseCategories[mainCategory]).map((sub) => (
+                <option key={sub} value={sub}>
+                  {sub}
+                </option>
+              ))}
+            </select>
+          </>
+        )}
+
+        {mainCategory && subCategory && (
+          <>
+            <label
+              style={{
+                display: "block",
+                marginBottom: "8px",
+                fontWeight: "bold",
+              }}
+            >
+              Select Admission Process:
+            </label>
+            <select
+              value={course}
+              onChange={(e) => setCourse(e.target.value)}
+              style={{
+                padding: "10px",
+                borderRadius: "6px",
+                border: "1px solid #ccc",
+                width: "100%",
+                maxWidth: "400px",
+                fontSize: "16px",
+              }}
+            >
+              <option value="">-- Select Course --</option>
+              {courseCategories[mainCategory][subCategory].map((c) => (
+                <option key={c.value} value={c.value}>
+                  {c.label}
+                </option>
+              ))}
+            </select>
+          </>
+        )}
       </div>
+
+      {selectedCategory && (
+        <div style={{ marginBottom: "20px" }}>
+          <label
+            style={{
+              display: "block",
+              marginBottom: "8px",
+              fontWeight: "bold",
+            }}
+          >
+            Select Course Group:
+          </label>
+          <select
+            value={selectedGroup}
+            onChange={(e) => {
+              setSelectedGroup(e.target.value);
+              setCourse("");
+            }}
+            style={dropdownStyle}
+          >
+            <option value="">-- Select Group --</option>
+            {Object.keys(courseCategories[selectedCategory]).map((group) => (
+              <option key={group} value={group}>
+                {group}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {selectedCategory && selectedGroup && (
+        <div style={{ marginBottom: "20px" }}>
+          <label
+            style={{
+              display: "block",
+              marginBottom: "8px",
+              fontWeight: "bold",
+            }}
+          >
+            Select Admission Process:
+          </label>
+          <select
+            value={course}
+            onChange={(e) => setCourse(e.target.value)}
+            style={dropdownStyle}
+          >
+            <option value="">-- Select Course --</option>
+            {courseCategories[selectedCategory][selectedGroup].map((c) => (
+              <option key={c.value} value={c.value}>
+                {c.label}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
 
       {/* Filter Form */}
       <div className="form-card">
@@ -1960,6 +2225,87 @@ const CutoffForm = () => {
           Print Results to PDF
         </button>
       </div>
+      <footer>
+        <div className="footer-container">
+          <div className="footer-content">
+            {/* Contact Information Section */}
+            <div className="footer-section">
+              <h3>📞 Contact & Support</h3>
+              <p>
+                📧{" "}
+                <a href="mailto:contact@vidyarthimitra.org">
+                  contact@vidyarthimitra.org
+                </a>
+              </p>
+              <p>
+                📧{" "}
+                <a href="mailto:info@vidyarthimitra.org">
+                  info@vidyarthimitra.org
+                </a>
+              </p>
+              <p>
+                📞 <a href="tel:+917720025900">+91 77200-25900</a>
+              </p>
+              <p>
+                📞 <a href="tel:+917720081400">+91 77200-81400</a>
+              </p>
+            </div>
+
+            {/* Social Media & Links Section */}
+            <div className="footer-section">
+              <h3>🌐 Connect With Us</h3>
+              <div className="social-links">
+                <a
+                  href="https://vidyarthimitra.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  🌐 Official Website
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/vidyarthi-mitra?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  💼 LinkedIn
+                </a>
+                <a
+                  href="https://www.instagram.com/vidyarthi_mitra?igsh=MTFiYjZjNjZyNzdrdw=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  📸 Instagram
+                </a>
+                <a
+                  href="https://vidyarthimitra.org/guideme"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  🧭 GuideMe
+                </a>
+                <a
+                  href="https://epaper.vidyarthimitra.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  📰 e-Paper
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Divider */}
+          <div className="footer-divider"></div>
+
+          {/* Copyright Section */}
+          <div className="footer-bottom">
+            <p>
+              © 2025 Vidyarthi Mitra. All rights reserved. | Empowering
+              Students, Enabling Futures
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
